@@ -23,7 +23,7 @@ import java.util.Map;
  * Implementation of the client authentication method 'none'. This is the default,
  * if no other authentication method is specified when calling
  * {@link AuthorizationService#performTokenRequest(TokenRequest,
- * AuthorizationService.TokenResponseCallback)}.
+ * BaseAuthorizationService.TokenResponseCallback)}.
  *
  * @see "OpenID Connect Core 1.0, Section 9
  * <https://openid.net/specs/openid-connect-core-1_0.html#rfc.section.9>"

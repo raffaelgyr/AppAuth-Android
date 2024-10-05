@@ -33,9 +33,9 @@ import java.util.Map;
 /**
  * Returned as a response to OAuth2 requests if they fail. Specifically:
  *
- * - The {@link net.openid.appauth.AuthorizationService.TokenResponseCallback response} to
+ * - The {@link net.openid.appauth.BaseAuthorizationService.TokenResponseCallback response} to
  * {@link AuthorizationService#performTokenRequest(net.openid.appauth.TokenRequest,
- * AuthorizationService.TokenResponseCallback) token requests},
+ * BaseAuthorizationService.TokenResponseCallback) token requests},
  *
  * - The {@link net.openid.appauth.AuthorizationServiceConfiguration.RetrieveConfigurationCallback
  * response}

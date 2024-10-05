@@ -546,7 +546,7 @@ public class AuthorizationServiceTest {
     }
 
     private static class AuthorizationCallback implements
-            AuthorizationService.TokenResponseCallback {
+            BaseAuthorizationService.TokenResponseCallback {
         public TokenResponse response;
         public AuthorizationException error;
 
@@ -561,7 +561,7 @@ public class AuthorizationServiceTest {
     }
 
     private static class RegistrationCallback implements
-            AuthorizationService.RegistrationResponseCallback {
+            BaseAuthorizationService.RegistrationResponseCallback {
         public RegistrationResponse response;
         public AuthorizationException error;
 

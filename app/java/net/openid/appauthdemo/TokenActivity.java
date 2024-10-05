@@ -37,6 +37,7 @@ import net.openid.appauth.AuthorizationResponse;
 import net.openid.appauth.AuthorizationService;
 import net.openid.appauth.AuthorizationServiceConfiguration;
 import net.openid.appauth.AuthorizationServiceDiscovery;
+import net.openid.appauth.BaseAuthorizationService;
 import net.openid.appauth.ClientAuthentication;
 import net.openid.appauth.EndSessionRequest;
 import net.openid.appauth.TokenRequest;
@@ -281,7 +282,7 @@ public class TokenActivity extends AppCompatActivity {
     @MainThread
     private void performTokenRequest(
             TokenRequest request,
-            AuthorizationService.TokenResponseCallback callback) {
+            BaseAuthorizationService.TokenResponseCallback callback) {
         ClientAuthentication clientAuthentication;
         try {
             clientAuthentication = mStateManager.getCurrent().getClientAuthentication();

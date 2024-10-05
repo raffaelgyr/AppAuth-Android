@@ -43,7 +43,7 @@ public class AuthState {
     /**
      * Tokens which have less time than this value left before expiry will be considered to be
      * expired for the purposes of calls to
-     * {@link #performActionWithFreshTokens(AuthorizationService, AuthStateAction)
+     * {@link #performActionWithFreshTokens(BaseAuthorizationService, AuthStateAction)
      * performActionWithFreshTokens}.
      */
     public static final int EXPIRY_TIME_TOLERANCE_MS = 60000;
@@ -127,7 +127,7 @@ public class AuthState {
     /**
      * The most recent refresh token received from the server, if available. Rather than using
      * this property directly as part of any request depending on authorization state, it is
-     * recommended to call {@link #performActionWithFreshTokens(AuthorizationService,
+     * recommended to call {@link #performActionWithFreshTokens(BaseAuthorizationService,
      * AuthStateAction) performActionWithFreshTokens} to ensure that fresh tokens are available.
      */
     @Nullable
@@ -209,7 +209,7 @@ public class AuthState {
     /**
      * The current access token, if available. Rather than using
      * this property directly as part of any request depending on authorization state, it s
-     * recommended to call {@link #performActionWithFreshTokens(AuthorizationService,
+     * recommended to call {@link #performActionWithFreshTokens(BaseAuthorizationService,
      * AuthStateAction) performActionWithFreshTokens} to ensure that fresh tokens are available.
      */
     @Nullable
@@ -472,7 +472,7 @@ public class AuthState {
      * Ensures that a non-expired access token is available before invoking the provided action.
      */
     public void performActionWithFreshTokens(
-            @NonNull AuthorizationService service,
+            @NonNull BaseAuthorizationService service,
             @NonNull AuthStateAction action) {
         performActionWithFreshTokens(
                 service,
@@ -486,7 +486,7 @@ public class AuthState {
      * Ensures that a non-expired access token is available before invoking the provided action.
      */
     public void performActionWithFreshTokens(
-            @NonNull AuthorizationService service,
+            @NonNull BaseAuthorizationService service,
             @NonNull ClientAuthentication clientAuth,
             @NonNull AuthStateAction action) {
         performActionWithFreshTokens(
@@ -503,7 +503,7 @@ public class AuthState {
      * refresh request.
      */
     public void performActionWithFreshTokens(
-            @NonNull AuthorizationService service,
+            @NonNull BaseAuthorizationService service,
             @NonNull Map<String, String> refreshTokenAdditionalParams,
             @NonNull AuthStateAction action) {
         try {
@@ -526,7 +526,7 @@ public class AuthState {
      * refresh request.
      */
     public void performActionWithFreshTokens(
-            @NonNull AuthorizationService service,
+            @NonNull BaseAuthorizationService service,
             @NonNull ClientAuthentication clientAuth,
             @NonNull Map<String, String> refreshTokenAdditionalParams,
             @NonNull AuthStateAction action) {
@@ -540,7 +540,7 @@ public class AuthState {
 
     @VisibleForTesting
     void performActionWithFreshTokens(
-            @NonNull final AuthorizationService service,
+            @NonNull final BaseAuthorizationService service,
             @NonNull final ClientAuthentication clientAuth,
             @NonNull final Map<String, String> refreshTokenAdditionalParams,
             @NonNull final Clock clock,
@@ -581,7 +581,7 @@ public class AuthState {
         service.performTokenRequest(
                 createTokenRefreshRequest(refreshTokenAdditionalParams),
                 clientAuth,
-                new AuthorizationService.TokenResponseCallback() {
+                new BaseAuthorizationService.TokenResponseCallback() {
                     @Override
                     public void onTokenRequestCompleted(
                             @Nullable TokenResponse response,
@@ -749,7 +749,7 @@ public class AuthState {
 
     /**
      * Interface for actions executed in the context of fresh (non-expired) tokens.
-     * @see #performActionWithFreshTokens(AuthorizationService, AuthStateAction)
+     * @see #performActionWithFreshTokens(BaseAuthorizationService, AuthStateAction)
      */
     public interface AuthStateAction {
         /**

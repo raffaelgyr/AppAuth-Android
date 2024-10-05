@@ -465,8 +465,8 @@ public class AuthStateTest {
 
         // as the access token has expired, we expect a token refresh request
         ArgumentCaptor<TokenRequest> requestCaptor = ArgumentCaptor.forClass(TokenRequest.class);
-        ArgumentCaptor<AuthorizationService.TokenResponseCallback> callbackCaptor =
-                ArgumentCaptor.forClass(AuthorizationService.TokenResponseCallback.class);
+        ArgumentCaptor<BaseAuthorizationService.TokenResponseCallback> callbackCaptor =
+                ArgumentCaptor.forClass(BaseAuthorizationService.TokenResponseCallback.class);
         verify(service, times(1)).performTokenRequest(
                 requestCaptor.capture(),
                 any(ClientAuthentication.class),
@@ -539,8 +539,8 @@ public class AuthStateTest {
 
         // as the access token has expired, we expect a token refresh request
         ArgumentCaptor<TokenRequest> requestCaptor = ArgumentCaptor.forClass(TokenRequest.class);
-        ArgumentCaptor<AuthorizationService.TokenResponseCallback> callbackCaptor =
-            ArgumentCaptor.forClass(AuthorizationService.TokenResponseCallback.class);
+        ArgumentCaptor<BaseAuthorizationService.TokenResponseCallback> callbackCaptor =
+            ArgumentCaptor.forClass(BaseAuthorizationService.TokenResponseCallback.class);
 
         verify(service, times(1)).performTokenRequest(
             requestCaptor.capture(),
